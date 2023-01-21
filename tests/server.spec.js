@@ -8,7 +8,7 @@ describe("Operaciones CRUD de cafes", () => {
         expect(cafes).toBeInstanceOf(Array);
     })
 
-    it("Obteniendo status 404 al eliminar un café que no existe DELETE/cafes/:id", async () => {
+    it("Obteniendo statusCode 404 al eliminar un café que no existe DELETE/cafes/:id", async () => {
         const idDelCafeAEliminar = 5;
         const jwt = "token";
         const res = await request(server)
@@ -19,7 +19,7 @@ describe("Operaciones CRUD de cafes", () => {
         expect(status).toBe(404);
     })
 
-   it("Enviando un nuevo café", async() => {
+   it("Obteniendo un statusCode 201 al enviar un nuevo café para añadir en POST/cafes", async() => {
         const id = Math.floor(Math.random() * 999);
         const cafe = {id, nombre: "Nuevo Café"};  
         const { statusCode: status }  = await request(server)
@@ -28,7 +28,7 @@ describe("Operaciones CRUD de cafes", () => {
         expect(status).toBe(201);
     })
        
-    it("Enviando un café para editar", async() => {
+    it("Obteniendo un statusCode 400 al enviar un café para editar con req.body.id y req.params.id diferentes en PUT/cafes/:id", async() => {
         const id = 7;
         const idDelCafeAModificar = 5;
          const cafe = {id, nombre: "café modificado"}
